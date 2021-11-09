@@ -29,7 +29,9 @@ def slice_data(df, feature):
     print()
 
 
-def model_performance_on_sliced_data(model, encoder, lb, data, slice_feature):
+def model_performance_on_sliced_data(feature, model, encoder, lb, data):
+
+    
 
     cat_features = [
         "workclass",
@@ -42,15 +44,25 @@ def model_performance_on_sliced_data(model, encoder, lb, data, slice_feature):
         "native-country",
     ]
 
-    for cls in data["salary"].unique():
-        data_temp = data[data["salary"] == cls]
+    for cls in data[feature].unique():
+        data_temp = data[data[feature] == cls]
+
+        #print(data_temp.head())
+        #print(data_temp.info())
 
         X_test, y_test, encoder, lb = process_data(
             data_temp, categorical_features=cat_features, encoder=encoder, lb=lb, label="salary", training=False
         )
-
+        
         y_pred = inference(model, X_test)
-        compute_model_metrics(y_test, y_pred)
+        y_pred = y_pred.round()
+        #y_0 = y_pred[y_pred==0]
+        #y_1 = y_pred[y_pred==1]
+        precision, recall, fbeta = compute_model_metrics(y_test, y_pred)
+        logger.info(f"Model metrics for sliced data by '{cls}' class")
+        logger.info(f"Precision: {precision:.4f}")
+        logger.info(f"Recall: {recall:.4f}")
+        logger.info(f"F1: {fbeta:.4f}")
 
 
 if __name__ == "__main__":
@@ -66,5 +78,5 @@ if __name__ == "__main__":
         logger.info(f'Data file {DATA_PATH} not found')
         exit()
 
-    slice_feature = 'workclass'
-    model_performance_on_sliced_data(model, encoder, lb, data, slice_feature)
+    feature = "workclass"
+    model_performance_on_sliced_data(feature, model, encoder, lb, data)

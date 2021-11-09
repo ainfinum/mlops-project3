@@ -102,4 +102,4 @@ if __name__ == "__main__":
 
     # test_inference(model(), encoder(), lb(), data(), cat_features())
     # test_compute_model_metrics()
-    test_process_data(data(), cat_features())
+    # test_process_data(data(), cat_features())

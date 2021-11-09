@@ -19,7 +19,7 @@ def run(data_local_path):
     # Add code to load in the data.
 
     if os.path.isfile(data_local_path):
-        logger.info(f"Loadinf data file {data_local_path}")
+        logger.info(f"Loading data file {data_local_path}")
         data = pd.read_csv(data_local_path)
     else:
         logger.info(f'Data file {data_local_path} not found')
