@@ -3,8 +3,6 @@ pandas
 scikit-learn
 requests
 pytest
-boto3
-s3fs
 dvc[s3]
 fastapi==0.63.0
 uvicorn
