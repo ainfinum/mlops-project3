@@ -12,9 +12,9 @@ logger = logging.getLogger()
 
 
 TEST_DATA_PATH = 'data/raw-census.csv'
-MODEL_PATH = 'model/saved_model.pkl'
-ENCODER_PATH = 'model/saved_encoder.pkl'
-LB_PATH = 'model/saved_lb.pkl'
+MODEL_PATH = 'model/saved_models/saved_model.pkl'
+ENCODER_PATH = 'model/saved_models/saved_encoder.pkl'
+LB_PATH = 'model/saved_models/saved_lb.pkl'
 
 
 @pytest.fixture
@@ -98,7 +98,7 @@ def test_inference(model, encoder, lb, data, cat_features):
     assert 1 >= pred_average >= 0, 'Prediction average of {pred_average} is not between 0 and 1'
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
     # test_inference(model(), encoder(), lb(), data(), cat_features())
     # test_compute_model_metrics()

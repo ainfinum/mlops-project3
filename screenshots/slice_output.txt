@@ -1,0 +1,37 @@
+2021-11-13 12:58:51,647 Loadind data file data/raw-census.csv
+2021-11-13 12:58:51,730 --- Model metrics for sliced data by 'workclass:State-gov'
+2021-11-13 12:58:51,730 Precision: 0.9524
+2021-11-13 12:58:51,730 Recall: 0.7932
+2021-11-13 12:58:51,730 F1: 0.8655
+2021-11-13 12:58:51,783 --- Model metrics for sliced data by 'workclass:Self-emp-not-inc'
+2021-11-13 12:58:51,783 Precision: 0.9685
+2021-11-13 12:58:51,783 Recall: 0.7224
+2021-11-13 12:58:51,783 F1: 0.8275
+2021-11-13 12:58:51,922 --- Model metrics for sliced data by 'workclass:Private'
+2021-11-13 12:58:51,922 Precision: 0.9451
+2021-11-13 12:58:51,923 Recall: 0.6212
+2021-11-13 12:58:51,923 F1: 0.7497
+2021-11-13 12:58:51,968 --- Model metrics for sliced data by 'workclass:Federal-gov'
+2021-11-13 12:58:51,968 Precision: 0.9541
+2021-11-13 12:58:51,968 Recall: 0.7844
+2021-11-13 12:58:51,968 F1: 0.8609
+2021-11-13 12:58:52,014 --- Model metrics for sliced data by 'workclass:Local-gov'
+2021-11-13 12:58:52,014 Precision: 0.9497
+2021-11-13 12:58:52,014 Recall: 0.7958
+2021-11-13 12:58:52,014 F1: 0.8660
+2021-11-13 12:58:52,064 --- Model metrics for sliced data by 'workclass:?'
+2021-11-13 12:58:52,064 Precision: 0.9850
+2021-11-13 12:58:52,064 Recall: 0.6859
+2021-11-13 12:58:52,064 F1: 0.8086
+2021-11-13 12:58:52,112 --- Model metrics for sliced data by 'workclass:Self-emp-inc'
+2021-11-13 12:58:52,113 Precision: 0.9502
+2021-11-13 12:58:52,113 Recall: 0.9502
+2021-11-13 12:58:52,113 F1: 0.9502
+2021-11-13 12:58:52,184 --- Model metrics for sliced data by 'workclass:Without-pay'
+2021-11-13 12:58:52,184 Precision: 1.0000
+2021-11-13 12:58:52,184 Recall: 1.0000
+2021-11-13 12:58:52,184 F1: 1.0000
+2021-11-13 12:58:52,223 --- Model metrics for sliced data by 'workclass:Never-worked'
+2021-11-13 12:58:52,223 Precision: 1.0000
+2021-11-13 12:58:52,223 Recall: 1.0000
+2021-11-13 12:58:52,223 F1: 1.0000

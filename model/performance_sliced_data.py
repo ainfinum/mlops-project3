@@ -3,8 +3,8 @@ import pytest
 import os
 import numpy as np
 import pickle
-from starter.ml.data import process_data
-from starter.ml.model import compute_model_metrics, inference
+from ml.data import process_data
+from ml.model import compute_model_metrics, inference
 import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
@@ -12,9 +12,9 @@ logger = logging.getLogger()
 
 
 DATA_PATH = 'data/raw-census.csv'
-MODEL_PATH = 'model/saved_model.pkl'
-ENCODER_PATH = 'model/saved_encoder.pkl'
-LB_PATH = 'model/saved_lb.pkl'
+MODEL_PATH = 'model/saved_models/saved_model.pkl'
+ENCODER_PATH = 'model/saved_models/saved_encoder.pkl'
+LB_PATH = 'model/saved_models/saved_lb.pkl'
 
 
 def slice_data(df, feature):
@@ -59,7 +59,7 @@ def model_performance_on_sliced_data(feature, model, encoder, lb, data):
         #y_0 = y_pred[y_pred==0]
         #y_1 = y_pred[y_pred==1]
         precision, recall, fbeta = compute_model_metrics(y_test, y_pred)
-        logger.info(f"Model metrics for sliced data by '{cls}' class")
+        logger.info(f"--- Model metrics for sliced data by '{feature}:{cls}'")
         logger.info(f"Precision: {precision:.4f}")
         logger.info(f"Recall: {recall:.4f}")
         logger.info(f"F1: {fbeta:.4f}")

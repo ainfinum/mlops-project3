@@ -19,15 +19,20 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
-    rf_config = {}
+    rf_config = {
+        "n_estimators": 100,
+        "max_depth": 50, 
+        "min_samples_split": 2, 
+        "min_samples_leaf": 1, 
+        "n_jobs": -1, 
+        "criterion": "mae", 
+        "max_features": 0.5,
+        "oob_score": True
+        }
+
     rf_model = RandomForestRegressor(**rf_config)
     rf_model.fit(X_train, y_train)
-
-    # Use the KNN classifier to fit data:
-    # classifier = KNeighborsClassifier(n_neighbors=20)
-    # classifier.fit(X_train, y_train)
-
-    # return classifier
+ 
     return rf_model
 
 
