@@ -8,6 +8,9 @@ from model.ml.model import inference
 
 app = FastAPI()
 
+# uvicorn main:app --reload
+# App will be available locally at http://127.0.0.1:8000.
+
 MODEL_PATH = "model/saved_models/saved_model.pkl"
 ENCODER_PATH = "model/saved_models/saved_encoder.pkl"
 LB_PATH = "model/saved_models/saved_lb.pkl"
@@ -42,7 +45,7 @@ class Item(BaseModel):
 
     class Config:
         schema_extra = {
-            "example_data": {
+            "example": {
                 "age": 40,
                 "workclass": "Private",
                 "fnlgt": 54545,
@@ -105,7 +108,3 @@ async def predict(item: Item):
     salary = ">50K" if prediction > 0.5 else "<=50K"
     results = {"salary": salary}
     return results
-
-
-# uvicorn main:app --reload
-# # By default, our app will be available locally at http://127.0.0.1:8000.
