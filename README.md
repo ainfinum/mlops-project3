@@ -7,7 +7,6 @@
 
 ## API endpoints
 
-
 ### Request & Response Examples
 
 
