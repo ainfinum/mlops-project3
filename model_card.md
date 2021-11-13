@@ -4,7 +4,7 @@ For additional information see the Model Card paper: https://arxiv.org/pdf/1810.
 
 ## Model Details
 
-•The Random forest classifier trained to predict whether a person makes over 50K a year on Census Income Data Set
+•Random forest classifier trained to predict whether a person makes over 50K a year on Census Income Data Set
 
 •Developed by Andrei Sasinovich in 2021.
  
