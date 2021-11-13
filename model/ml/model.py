@@ -1,12 +1,10 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
 
-# Optional: implement hyperparameter tuning.
+
 def train_model(X_train, y_train):
     """
-    Trains a machine learning model and returns it.
+      Trains a machine learning model and returns it.
 
     Inputs
     ------
@@ -21,24 +19,25 @@ def train_model(X_train, y_train):
     """
     rf_config = {
         "n_estimators": 100,
-        "max_depth": 50, 
-        "min_samples_split": 2, 
-        "min_samples_leaf": 1, 
-        "n_jobs": -1, 
-        "criterion": "mae", 
+        "max_depth": 50,
+        "min_samples_split": 2,
+        "min_samples_leaf": 1,
+        "n_jobs": -1,
+        "criterion": "mae",
         "max_features": 0.5,
-        "oob_score": True
-        }
+        "oob_score": True,
+    }
 
     rf_model = RandomForestRegressor(**rf_config)
     rf_model.fit(X_train, y_train)
- 
+
     return rf_model
 
 
 def compute_model_metrics(y, preds):
     """
-    Validates the trained machine learning model using precision, recall, and F1.
+    Validates the trained machine learning model using precision, recall,
+    and F1.
 
     Inputs
     ------

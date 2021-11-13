@@ -3,18 +3,18 @@ import pytest
 import os
 import numpy as np
 import pickle
-from starter.ml.data import process_data
-from starter.ml.model import compute_model_metrics, inference
+from model.ml.data import process_data
+from model.ml.model import compute_model_metrics, inference
 import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
-TEST_DATA_PATH = 'data/raw-census.csv'
-MODEL_PATH = 'model/saved_models/saved_model.pkl'
-ENCODER_PATH = 'model/saved_models/saved_encoder.pkl'
-LB_PATH = 'model/saved_models/saved_lb.pkl'
+TEST_DATA_PATH = "data/raw-census.csv"
+MODEL_PATH = "model/saved_models/saved_model.pkl"
+ENCODER_PATH = "model/saved_models/saved_encoder.pkl"
+LB_PATH = "model/saved_models/saved_lb.pkl"
 
 
 @pytest.fixture
@@ -25,7 +25,7 @@ def data():
         logger.info(f"Loading data file {TEST_DATA_PATH}")
         data = pd.read_csv(TEST_DATA_PATH, nrows=200)
     else:
-        logger.info(f'Data file {TEST_DATA_PATH} not found')
+        logger.info(f"Data file {TEST_DATA_PATH} not found")
         exit()
 
     return data
@@ -48,17 +48,17 @@ def cat_features():
 
 @pytest.fixture
 def model():
-    return pickle.load(open(MODEL_PATH, 'rb'))
+    return pickle.load(open(MODEL_PATH, "rb"))
 
 
 @pytest.fixture
 def encoder():
-    return pickle.load(open(ENCODER_PATH, 'rb'))
+    return pickle.load(open(ENCODER_PATH, "rb"))
 
 
 @pytest.fixture
 def lb():
-    return pickle.load(open(LB_PATH, 'rb'))
+    return pickle.load(open(LB_PATH, "rb"))
 
 
 def test_process_data(data, cat_features):
@@ -67,10 +67,17 @@ def test_process_data(data, cat_features):
         data, categorical_features=cat_features, label="salary", training=True
     )
 
-    assert X_train.shape[0] == data.shape[0], 'Wrong number of rows in source data'
-    assert X_train.shape[1] > data.shape[1], 'Wrong number of features in processed data'
+    assert (
+        X_train.shape[0] == data.shape[0]
+        ), "Wrong number of rows in source data"
 
-    assert y_train.shape[0] == data.shape[0], 'Wrong shape of y_train rows after processing data'
+    assert (
+        X_train.shape[1] > data.shape[1]
+    ), "Wrong number of features in processed data"
+
+    assert (
+        y_train.shape[0] == data.shape[0]
+    ), "Wrong shape of y_train rows after processing data"
 
 
 def test_compute_model_metrics():
@@ -88,18 +95,25 @@ def test_inference(model, encoder, lb, data, cat_features):
     """Test model inference"""
 
     X_test, y_test, encoder, lb = process_data(
-        data, categorical_features=cat_features, encoder=encoder, lb=lb, label="salary", training=False
+        data,
+        categorical_features=cat_features,
+        encoder=encoder,
+        lb=lb,
+        label="salary",
+        training=False,
     )
 
     y_pred = inference(model, X_test)
 
-    assert y_pred.shape[0] == X_test.shape[0], 'Wrong predictions shape'
+    assert y_pred.shape[0] == X_test.shape[0], "Wrong predictions shape"
     pred_average = np.average(y_pred)
-    assert 1 >= pred_average >= 0, 'Prediction average of {pred_average} is not between 0 and 1'
+    assert (
+        1 >= pred_average >= 0
+    ), "Prediction average of {pred_average} is not between 0 and 1"
 
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    # test_inference(model(), encoder(), lb(), data(), cat_features())
-    # test_compute_model_metrics()
-    # test_process_data(data(), cat_features())
+# test_inference(model(), encoder(), lb(), data(), cat_features())
+# test_compute_model_metrics()
+# test_process_data(data(), cat_features())

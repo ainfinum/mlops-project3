@@ -1,7 +1,5 @@
 import pandas as pd
-import pytest
 import os
-import numpy as np
 import pickle
 from ml.data import process_data
 from ml.model import compute_model_metrics, inference
@@ -18,7 +16,10 @@ LB_PATH = 'model/saved_models/saved_lb.pkl'
 
 
 def slice_data(df, feature):
-    """Function for calculating descriptive stats on slices of the Iris dataset."""
+    """
+    Function for calculating descriptive stats on slices of
+    the Iris dataset.
+    """
     for cls in df["class"].unique():
         df_temp = df[df["class"] == cls]
         mean = df_temp[feature].mean()
@@ -30,8 +31,6 @@ def slice_data(df, feature):
 
 
 def model_performance_on_sliced_data(feature, model, encoder, lb, data):
-
-    
 
     cat_features = [
         "workclass",
@@ -47,17 +46,16 @@ def model_performance_on_sliced_data(feature, model, encoder, lb, data):
     for cls in data[feature].unique():
         data_temp = data[data[feature] == cls]
 
-        #print(data_temp.head())
-        #print(data_temp.info())
-
         X_test, y_test, encoder, lb = process_data(
-            data_temp, categorical_features=cat_features, encoder=encoder, lb=lb, label="salary", training=False
+            data_temp,
+            categorical_features=cat_features,
+            encoder=encoder,
+            lb=lb, label="salary",
+            training=False
         )
-        
+
         y_pred = inference(model, X_test)
         y_pred = y_pred.round()
-        #y_0 = y_pred[y_pred==0]
-        #y_1 = y_pred[y_pred==1]
         precision, recall, fbeta = compute_model_metrics(y_test, y_pred)
         logger.info(f"--- Model metrics for sliced data by '{feature}:{cls}'")
         logger.info(f"Precision: {precision:.4f}")

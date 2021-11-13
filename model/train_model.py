@@ -3,14 +3,12 @@ import os
 import logging
 import pickle
 import pandas as pd
-
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
-logger = logging.getLogger()
-
-
 from sklearn.model_selection import train_test_split
 from ml.data import process_data
 from ml.model import train_model, compute_model_metrics, inference
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
 
 
 def run(data_local_path):
@@ -25,7 +23,8 @@ def run(data_local_path):
         logger.info(f'Data file {data_local_path} not found')
         exit()
 
-    # Optional enhancement, use K-fold cross validation instead of a train-test split.
+    # Optional enhancement, use K-fold cross validation instead
+    # of a train-test split.
     train, test = train_test_split(data, test_size=0.20)
 
     cat_features = [
@@ -43,8 +42,13 @@ def run(data_local_path):
     )
 
     X_test, y_test, encoder, lb = process_data(
-        test, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
-    )
+                                            test,
+                                            categorical_features=cat_features,
+                                            label="salary",
+                                            training=False,
+                                            encoder=encoder,
+                                            lb=lb
+                                        )
 
     # Train and save a model.
     logger.info("Model training started")
