@@ -1,8 +1,8 @@
 numpy
 pandas
 scikit-learn
+fastapi==0.63.0
 requests
 pytest
-dvc[s3]
-fastapi==0.63.0
 uvicorn
+dvc[s3]
