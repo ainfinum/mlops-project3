@@ -18,12 +18,13 @@ app = FastAPI()
 # uvicorn main:app --reload
 # App will be available locally at http://127.0.0.1:8000.
 
-MODEL_PATH = "model/saved_models/saved_model.pkl"
-ENCODER_PATH = "model/saved_models/saved_encoder.pkl"
-LB_PATH = "model/saved_models/saved_lb.pkl"
-model = pickle.load(open(MODEL_PATH, "rb"))
-encoder = pickle.load(open(ENCODER_PATH, "rb"))
-lb = pickle.load(open(LB_PATH, "rb"))
+
+@app.on_event("startup")
+async def startup_event():
+    global model, encoder, lb
+    model = pickle.load(open("./model/saved_models/saved_model.pkl", "rb"))
+    encoder = pickle.load(open("./model/saved_models/saved_encoder.pkl", "rb"))
+    lb = pickle.load(open("./model/saved_models/saved_lb.pkl", "rb"))
 
 
 @app.get("/")
