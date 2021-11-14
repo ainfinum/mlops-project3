@@ -1,5 +1,8 @@
 ## Machine Learning DevOps Engineer Nanodegree Program
 # Project: Deploying a Machine Learning Model on Heroku with FastAPI
+
+Github url: https://github.com/ainfinum/mlops-project3
+ 
  
 ## Model
 
